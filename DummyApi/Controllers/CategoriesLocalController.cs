@@ -1,3 +1,4 @@
+using DummyApi.Data;
 using DummyApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -5,8 +6,15 @@ namespace DummyApi.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class CategoriesController : ControllerBase
+public class CategoriesLocalController : ControllerBase
 {
+    private readonly ApiDbContext _dbcontext;
+
+    public CategoriesLocalController(ApiDbContext dbContext)
+    {
+        _dbcontext = dbContext;
+    }
+
     private static List<Category> categories = new List<Category>()
     {
         new Category() { Id = 0, Name = "Apartment", ImageUrl = "apartment.png" },
