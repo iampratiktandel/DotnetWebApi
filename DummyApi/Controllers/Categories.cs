@@ -35,6 +35,13 @@ public class CategoriesController : ControllerBase
         }
     }
 
+    // GET: /api/categories/SortCategories
+    [HttpGet("[action]")]
+    public IActionResult SortCategories()
+    {
+        return Ok(_dbContext.Categories.OrderByDescending(x => x.Name));
+    }
+
     // POST: /api/categories
     [HttpPost]
     public IActionResult Post([FromBody] Category category)
